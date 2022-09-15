@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise.Database
+namespace Exercise.Contants
 {
-    public interface IProductService
+    public static class ErrorMessage
     {
-        List<ProductView> GetAll<ProductView>(string sqlQuery);
+        public const string ValueIsNotNull = "{0} is not null";
     }
 }

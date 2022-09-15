@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise.Database
+namespace Exercise.Enums
 {
-    public interface IProductService
+    public enum ProductType
     {
-        List<ProductView> GetAll<ProductView>(string sqlQuery);
+        Single,
+        Package,
+        Other
     }
 }

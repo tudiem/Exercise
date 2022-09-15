@@ -10,8 +10,6 @@ namespace Exercise
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        private DapperConnection _dapper = new DapperConnection();
-
         /// <summary>
         ///  Clean up any resources being used.
         /// </summary>

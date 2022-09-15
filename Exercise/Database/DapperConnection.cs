@@ -15,20 +15,20 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Exercise.Database
 {
-    public class DapperConnection
+    public static class DapperConnection
     {
-        private string _connectionString = "server=DESKTOP-9EQ67PK; database=ExerciseDB;integrated security=true";
-        public IDbConnection _connect;
+        public static string ConnectionString = "server=DESKTOP-9EQ67PK; database=ExerciseDB;integrated security=true";
+        //public IDbConnection _connect;
 
-        public DapperConnection()
-        {
-            _connect = new SqlConnection(_connectionString);
-        }
+        //public DapperConnection()
+        //{
+        //    _connect = new SqlConnection(_connectionString);
+        //}
 
-        public IDbConnection GetDbConnection()
-        {
-            return _connect;
-        }
+        //public IDbConnection GetDbConnection()
+        //{
+        //    return _connect;
+        //}
 
         //public List<T> GetAll<T>(string sqlQuery)
         //{

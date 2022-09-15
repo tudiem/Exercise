@@ -1,4 +1,5 @@
-﻿using Exercise.Enums;
+﻿using Exercise.Contants;
+using Exercise.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise.Database.Entities
+namespace Exercise.Models
 {
-    public class Product
+    public class ProductView
     {
         public int Id { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
-        [MaxLength(255)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = ErrorMessage.ValueIsNotNull)]
+        [MaxLength(255, ErrorMessage = "Length of name product must less 255")]
         public string Name { get; set; }
 
         public int Quantity { get; set; }
@@ -21,6 +22,8 @@ namespace Exercise.Database.Entities
         [RegularExpression(@"^\d{1,2}(\.\d{0,2})$", ErrorMessage = "Value contains more than 2 decimal places")]
         public decimal Price { get; set; }
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = ErrorMessage.ValueIsNotNull)]
+        [MaxLength(255)]
         public int CategoryId { get; set; }
 
         public DateTime CreatedDate { get; set; }
@@ -32,6 +35,6 @@ namespace Exercise.Database.Entities
         public bool IsActive { get; set; }
 
         public ProductType Type { get; set; }
+        public string CategoryName { get; set; }
     }
-
 }

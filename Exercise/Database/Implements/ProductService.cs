@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,48 +12,29 @@ namespace Exercise.Database.Implements
 {
     public abstract class ProductService : DbConnection
     {
-        private DapperConnection _dapperConnection;
         private IDbConnection _connect;
 
         public ProductService()
         {
-            _dapperConnection = new DapperConnection();
-            _connect = _dapperConnection.GetDbConnection();
+            _connect = new SqlConnection(DapperConnection.ConnectionString);
         }
 
-        public override string ConnectionString { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public override string Database => throw new NotImplementedException();
-
-        public override string DataSource => throw new NotImplementedException();
-
-        public override string ServerVersion => throw new NotImplementedException();
-
-        public override ConnectionState State => throw new NotImplementedException();
-
-        public override void ChangeDatabase(string databaseName)
+        public List<ProductView> GetAll<ProductView>(string sqlQuery)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                _connect.Open();
 
-        public override void Close()
-        {
-            throw new NotImplementedException();
-        }
+                List<ProductView> records = _connect.Query<ProductView>(sqlQuery).ToList();
 
-        public override void Open()
-        {
-            throw new NotImplementedException();
-        }
+                _connect.Close();
 
-        protected override DbTransaction BeginDbTransaction(IsolationLevel isolationLevel)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override DbCommand CreateDbCommand()
-        {
-            throw new NotImplementedException();
+                return records;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
