@@ -1,4 +1,5 @@
-﻿using Exercise.Contants;
+﻿using DevExpress.Utils.Filtering;
+using Exercise.Contants;
 using Exercise.Enums;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Exercise.Models
         [MaxLength(255, ErrorMessage = "Length of name product must less 255")]
         public string Name { get; set; }
 
+        [Range(0, 100, ErrorMessage = ErrorMessage.ValueIsInRange)]
         public int Quantity { get; set; }
 
         [RegularExpression(@"^\d{1,2}(\.\d{0,2})$", ErrorMessage = "Value contains more than 2 decimal places")]
@@ -26,6 +28,7 @@ namespace Exercise.Models
         [MaxLength(255)]
         public int CategoryId { get; set; }
 
+        [DisplayFormat(DataFormatString = "mm/dd/yyyy", ApplyFormatInEditMode = true)]
         public DateTime CreatedDate { get; set; }
 
         [Required(AllowEmptyStrings = false)]
