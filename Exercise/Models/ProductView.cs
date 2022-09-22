@@ -12,11 +12,11 @@ namespace Exercise.Models
 {
     public class ProductView
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = ErrorMessage.ValueIsNotNull)]
         [MaxLength(255, ErrorMessage = "Length of name product must less 255")]
-        public string Name { get; set; }
+        public string ProductName { get; set; }
 
         [Range(0, 100, ErrorMessage = ErrorMessage.ValueIsInRange)]
         public int Quantity { get; set; }
@@ -29,7 +29,7 @@ namespace Exercise.Models
         public int CategoryId { get; set; }
 
         [DisplayFormat(DataFormatString = "mm/dd/yyyy", ApplyFormatInEditMode = true)]
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
         [Required(AllowEmptyStrings = false)]
         [MaxLength(1000)]
@@ -39,5 +39,6 @@ namespace Exercise.Models
 
         public ProductType Type { get; set; }
         public string CategoryName { get; set; }
+        public string Photo { get; set; }
     }
 }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Exercise.Forms.ProductForm
 {
-    public partial class Detail : Form
+    public partial class formCreatedProduct : Form
     {
-        public Detail()
+        public formCreatedProduct()
         {
             InitializeComponent();
         }

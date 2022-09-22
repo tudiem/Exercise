@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exercise.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Exercise.Database
 {
     public interface IProductService
     {
-        List<ProductView> GetAll<ProductView>(string sqlQuery);
+        List<ProductView> GetAll();
     }
 }
