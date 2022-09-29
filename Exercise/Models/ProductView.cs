@@ -1,9 +1,11 @@
 ﻿using DevExpress.Utils.Filtering;
 using Exercise.Contants;
 using Exercise.Enums;
+using Exercise.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,5 +42,22 @@ namespace Exercise.Models
         public ProductType Type { get; set; }
         public string CategoryName { get; set; }
         public string Photo { get; set; }
+
+        public Image LoadImage()
+        {
+            Image tempImage = null;
+            if (!string.IsNullOrEmpty(this.Photo))
+            {
+                var path = PhotoUtiities.GetPathToPhoto(this.Photo);
+                if (File.Exists(path))
+                {
+                    using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                    {
+                        tempImage = Image.FromStream(fs);
+                    }
+                }
+            }
+            return tempImage;
+        }
     }
 }

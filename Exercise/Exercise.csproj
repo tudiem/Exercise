@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Utilities\PathToPhoto.cs~RF1b1bcd89.TMP" />
+    <None Remove="Utilities\PhotoUtiities.cs~RF983897f.TMP" />
   </ItemGroup>
 
   <ItemGroup>

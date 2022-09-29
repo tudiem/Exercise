@@ -35,7 +35,6 @@
             this.ProductId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ProductName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Price = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.CategoryId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CategoryName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CreatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Description = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -115,7 +114,6 @@
             this.ProductId,
             this.ProductName,
             this.Price,
-            this.CategoryId,
             this.CategoryName,
             this.CreatedDate,
             this.Description,
@@ -123,34 +121,33 @@
             this.gridProductsView.GridControl = this.gridProducts;
             this.gridProductsView.Name = "gridProductsView";
             this.gridProductsView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridProductsView_FocusedRowChanged);
+            this.gridProductsView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridProductsView_CellValueChanged);
+            this.gridProductsView.DoubleClick += new System.EventHandler(this.gridProductsView_DoubleClick);
             // 
             // ProductId
             // 
             this.ProductId.Caption = "gridColumn1";
             this.ProductId.FieldName = "ProductId";
             this.ProductId.Name = "ProductId";
+            this.ProductId.OptionsColumn.AllowEdit = false;
             // 
             // ProductName
             // 
             this.ProductName.Caption = "Name";
             this.ProductName.FieldName = "ProductName";
             this.ProductName.Name = "ProductName";
+            this.ProductName.OptionsColumn.AllowEdit = false;
             this.ProductName.Visible = true;
             this.ProductName.VisibleIndex = 0;
             // 
             // Price
             // 
             this.Price.Caption = "Price";
+            this.Price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Price.FieldName = "Price";
             this.Price.Name = "Price";
             this.Price.Visible = true;
             this.Price.VisibleIndex = 2;
-            // 
-            // CategoryId
-            // 
-            this.CategoryId.Caption = "CategoryId";
-            this.CategoryId.FieldName = "CategoryId";
-            this.CategoryId.Name = "CategoryId";
             // 
             // CategoryName
             // 
@@ -163,6 +160,8 @@
             // CreatedDate
             // 
             this.CreatedDate.Caption = "Created Date";
+            this.CreatedDate.DisplayFormat.FormatString = "dd\\/MM\\/yyyy";
+            this.CreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.CreatedDate.FieldName = "CreatedDate";
             this.CreatedDate.Name = "CreatedDate";
             this.CreatedDate.Visible = true;
@@ -173,6 +172,7 @@
             this.Description.Caption = "Description";
             this.Description.FieldName = "Description";
             this.Description.Name = "Description";
+            this.Description.OptionsColumn.AllowEdit = false;
             this.Description.Visible = true;
             this.Description.VisibleIndex = 3;
             // 
@@ -216,6 +216,7 @@
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 6;
             this.btnEdit.Text = "Edit";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // picPhoto
             // 
@@ -273,15 +274,18 @@
             this.btnCreateProduct.Size = new System.Drawing.Size(75, 23);
             this.btnCreateProduct.TabIndex = 1;
             this.btnCreateProduct.Text = "New Product";
+            this.btnCreateProduct.Click += new System.EventHandler(this.btnCreateProduct_Click);
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(236, 376);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // formProducts
             // 
@@ -323,7 +327,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraGrid.Columns.GridColumn ProductId;
         private DevExpress.XtraGrid.Columns.GridColumn ProductName;
-        private DevExpress.XtraGrid.Columns.GridColumn CategoryId;
         private DevExpress.XtraGrid.Columns.GridColumn CreatedDate;
         private DevExpress.XtraGrid.Columns.GridColumn Description;
         private DevExpress.XtraGrid.Columns.GridColumn IsActive;
